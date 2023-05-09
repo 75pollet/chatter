@@ -5,8 +5,11 @@ defmodule ChatterWeb.Router do
     plug :accepts, ["json"]
   end
 
-  scope "/api", ChatterWeb do
+  scope "/api/graphql" do
     pipe_through :api
+
+    get "/", Absinthe.Plug.GraphiQL, schema: ChatterWeb.Schema, interface: :playground
+    post "/", Absinthe.Plug, schema: ChatterWeb.Schema
   end
 
   # Enable LiveDashboard and Swoosh mailbox preview in development
