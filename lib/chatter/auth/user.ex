@@ -18,6 +18,8 @@ defmodule Chatter.Auth.User do
     |> validate_required([:name, :email, :username, :password])
     |> unique_constraint(:username)
     |> unique_constraint(:email)
+    |> update_change(:email, &String.downcase/1)
+    |> validate_format(:email, ~r/@/)
     |> validate_length(:username, min: 4, max: 30)
     |> validate_length(:name, min: 3, max: 30)
     |> validate_length(:password, min: 8, max: 30)

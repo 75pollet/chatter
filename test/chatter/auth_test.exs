@@ -21,7 +21,12 @@ defmodule Chatter.AuthTest do
     end
 
     test "create_user/1 with valid data creates a user" do
-      valid_attrs = %{email: "some email", name: "some name", password: "some password", username: "some username"}
+      valid_attrs = %{
+        email: "some email",
+        name: "some name",
+        password: "some password",
+        username: "some username"
+      }
 
       assert {:ok, %User{} = user} = Auth.create_user(valid_attrs)
       assert user.email == "some email"
@@ -36,7 +41,13 @@ defmodule Chatter.AuthTest do
 
     test "update_user/2 with valid data updates the user" do
       user = user_fixture()
-      update_attrs = %{email: "some updated email", name: "some updated name", password: "some updated password", username: "some updated username"}
+
+      update_attrs = %{
+        email: "some updated email",
+        name: "some updated name",
+        password: "some updated password",
+        username: "some updated username"
+      }
 
       assert {:ok, %User{} = user} = Auth.update_user(user, update_attrs)
       assert user.email == "some updated email"
